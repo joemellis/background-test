@@ -71,6 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
       window.voice = voice;
       window.rave = rave;
     });
+
+    function playYay() {
+        // Create an Audio element
+        const audio = new Audio('yay.ogg'); // Replace 'path/to/yay-audio.mp3' with the actual path to your audio file
+        const audio2 = new Audio('yay2.mp3');
+        // Play the audio
+        audio.play();
+        audio2.play();
+      }
   //------------weather API URL calls and assignments-----------------------------
 
    // API and API URL
