@@ -43,6 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
           // If raveInterval is defined, clear the interval to stop rave mode
           clearInterval(raveInterval);
           raveInterval = undefined;
+    
+          // Stop the rave audio if it's playing
+          if (raveAudio) {
+            raveAudio.pause();
+            raveAudio.currentTime = 0;
+          }
         } else {
           // Start rave mode: Rapidly change background color through hue rotation
           let hue = 0;
@@ -51,11 +57,15 @@ document.addEventListener('DOMContentLoaded', function() {
             backgroundLayer.style.transition = 'background 0.1s ease-in-out';
             backgroundLayer.style.background = `linear-gradient(to bottom, hsl(${hue}, 100%, 80%), hsl(${(hue + 180) % 360}, 100%, 80%))`;
           }, 100);
+    
+          // Start playing the rave audio in a loop
+          raveAudio = new Audio('music.mp3'); // Replace with the actual path to your rave audio file
+          raveAudio.loop = true;
+          raveAudio.play();
         }
       }
     
       window.updateGradient = updateGradient;
-      
       window.voice = voice;
       window.rave = rave;
     });
