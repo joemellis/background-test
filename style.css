@@ -47,14 +47,14 @@ body, html {
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   text-align: center;
   z-index: 2; /* Set a higher z-index for the slider */
   background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background for better readability */
-  padding: 20px;
+  padding: 0px;
   border-radius: 10px;
 }
 
@@ -91,9 +91,10 @@ body, html {
   background: #ebfffc;
   color: #555;
   padding: 10px 25px;
-  height: 60px;
+  height: 30px;
   border-radius: 30px;
   font-size: 18px;
+  align-self: center;
 }
 
 .search button {
@@ -105,16 +106,37 @@ body, html {
   height: 60px;
   cursor: pointer;
   margin-left: 8px; /* Add margin to separate input and button */
+  align-self: center;
 }
 
 .search button img {
   width: 16px;
 }
 
+.weather {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white; /* Set text color for better visibility on the background image */
+  padding: 20px; /* Adjust padding as needed */
+}
+
 .weather-icon {
-  width: 250px;
-  margin-top: 0px;
+  width: 100px; /* Adjust the width as needed */
+  margin-right: 20px; /* Adjust spacing between the icon and details */
   border-radius: 50%;
+}
+
+.weather-details {
+  flex-grow: 1; /* Allow details to grow and take remaining space */
+}
+
+.weather button {
+  background: #ebfffc;
+  border: 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .weather h1 {
@@ -125,13 +147,13 @@ body, html {
 .weather h2 {
   font-size: 45px;
   font-weight: 400;
-  margin-top: -10px;
+  margin-top: -2px;
 }
 
 .weather h3 {
   font-size: 30px;
   font-weight: 300;
-  margin-top: -10px;
+  margin-top: -2px;
 }
 
 .details {
@@ -139,7 +161,7 @@ body, html {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  margin-top: 50px;
+  margin-top: 5px;
 }
 
 .col {
