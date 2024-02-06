@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const backgroundLayer = document.querySelector('.background-layer');
     const slider = document.getElementById('gradientSlider');
     let raveInterval;
-  
+  //---------------------Background color changer---------------------------------
     function updateGradient() {
       const value = slider.value / 100;
       const lightBlue = [135, 206, 250];  // RGB values for light blue
@@ -32,11 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return blendedColor2;
       }
      
-    
+    //----------------speech to text FUNCTIONS-----------------------
       function voice() {
         // Add your voice logic here
         console.log('Voice button clicked!');
       }
+
+      //----------------RAVE FUNCTIONS-----------------------
       function rave() {
         // Toggle rave effect
         if (raveInterval) {
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 100);
     
           // Start playing the rave audio in a loop
-          raveAudio = new Audio('music.mp3'); // Replace with the actual path to your rave audio file
+          raveAudio = new Audio('music.mp3'); //  audio file
           raveAudio.loop = true;
           raveAudio.play();
         }
@@ -82,13 +84,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
    // get weather data
    async function checkWeather(city) {
-       const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-       // check city input is valid, if not we show an error
-       if (response.status == 404) {
-           document.querySelector(".error").style.display = "block";
-           document.querySelector(".weather").style.display = "none";
-           //if city is valid take data we want to display and apply to appropriate HTML Elemments
-       } else {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    
+    // Get the error and weather elements
+    const errorElement = document.querySelector(".error");
+    const weatherElement = document.querySelector(".weather");
+  
+    // check city input is valid, if not, show an error
+    if (response.status == 404) {
+      errorElement.style.display = "block";
+      weatherElement.style.display = "none";
+    } else {
            let data = await response.json();
 
            document.querySelector(".city").innerHTML = data.name;

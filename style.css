@@ -197,9 +197,11 @@ button:nth-child(3) {
 }
 
 .error {
+ 
   text-align: left;
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 20px; /* Updated font size */
   margin-top: 10px;
   display: none;
+  color: red; /* Set the color to red */
 }
