@@ -31,4 +31,60 @@ document.addEventListener('DOMContentLoaded', function() {
         return blendedColor2;
       }
   });
-  
+  //------------weather API URL calls and assignments-----------------------------
+
+   // API and API URL
+   const apiKey = "80c73df9bb32efa840373adfb21d4728";
+   const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+   // get our input field button and main weather image
+   const searchBox = document.querySelector(".search input");
+   const searchBtn = document.querySelector(".search button");
+   const weatherIcon = document.querySelector(".weather-icon");
+   let textToSpeechMessage = ""
+
+   // get weather data
+   async function checkWeather(city) {
+       const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+       // check city input is valid, if not we show an error
+       if (response.status == 404) {
+           document.querySelector(".error").style.display = "block";
+           document.querySelector(".weather").style.display = "none";
+           //if city is valid take data we want to display and apply to appropriate HTML Elemments
+       } else {
+           let data = await response.json();
+
+           document.querySelector(".city").innerHTML = data.name;
+           document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+           document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+           document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
+           document.querySelector(".description").innerHTML = data.weather[0].description;
+           //display data to console
+           console.log(data);
+          
+            const textToSpeechMessage = `The weather in ${city} is ${data.weather[0].description}. The temperature is ${Math.round(data.main.temp)} degrees Celsius.`;
+            // Now you can use textToSpeechMessage for your purpose, such as passing it to a text-to-speech API or displaying it in your application
+            console.log(textToSpeechMessage);
+           //use the data to decide which image should be shown
+           if (data.weather[0].main == "Clouds") {
+               weatherIcon.src = "images/clouds.png";
+           } else if (data.weather[0].main == "Clear") {
+               weatherIcon.src = "images/clear.png";
+           } else if (data.weather[0].main == "Rain") {
+               weatherIcon.src = "images/rain.png";
+           } else if (data.weather[0].main == "Drizzle") {
+               weatherIcon.src = "images/drizzle.png";
+           } else if (data.weather[0].main == "Fog") {
+               weatherIcon.src = "images/mist.png";
+           } else {
+               weatherIcon.src = "images/snow.png";
+           }
+           //Weather div is hidden by default, if city is valid display the weather content div
+           document.querySelector(".weather").style.display = "block";
+           document.querySelector(".error").style.display = "none";
+       }
+   }
+   // add listener to the search button
+   searchBtn.addEventListener("click", () => {
+       //run function check weather passing it the value in our text input field
+       checkWeather(searchBox.value);
+   })
