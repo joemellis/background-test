@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function playYay() {
         // Create an Audio element
-        const audio = new Audio('yay.ogg'); // Replace 'path/to/yay-audio.mp3' with the actual path to your audio file
+        const audio = new Audio('yay.ogg');
         const audio2 = new Audio('yay2.mp3');
         // Play the audio
         audio.play();
