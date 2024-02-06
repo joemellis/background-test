@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const backgroundLayer = document.querySelector('.background-layer');
     const slider = document.getElementById('gradientSlider');
+    let raveInterval;
   
     function updateGradient() {
       const value = slider.value / 100;
@@ -30,7 +31,34 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         return blendedColor2;
       }
-  });
+     
+    
+      function voice() {
+        // Add your voice logic here
+        console.log('Voice button clicked!');
+      }
+      function rave() {
+        // Toggle rave effect
+        if (raveInterval) {
+          // If raveInterval is defined, clear the interval to stop rave mode
+          clearInterval(raveInterval);
+          raveInterval = undefined;
+        } else {
+          // Start rave mode: Rapidly change background color through hue rotation
+          let hue = 0;
+          raveInterval = setInterval(() => {
+            hue = (hue + 10) % 360;
+            backgroundLayer.style.transition = 'background 0.1s ease-in-out';
+            backgroundLayer.style.background = `linear-gradient(to bottom, hsl(${hue}, 100%, 80%), hsl(${(hue + 180) % 360}, 100%, 80%))`;
+          }, 100);
+        }
+      }
+    
+      window.updateGradient = updateGradient;
+      
+      window.voice = voice;
+      window.rave = rave;
+    });
   //------------weather API URL calls and assignments-----------------------------
 
    // API and API URL
