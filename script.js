@@ -256,3 +256,5 @@ function speakWeatherInfo(city, description, temperature, localTime) {
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox.value);
 });
+
+
